@@ -19,9 +19,8 @@ protected:
     void changeEvent(QEvent *e);
 
 private slots:
-    void check();
+    void search();
     void showPage();
-    void foo();
 
 private:
     Ui::MainWindow *ui;

@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     http->setHost(BASE_URL);
 
     /* creating connections */
-    connect(ui->pushButton_Check,SIGNAL(clicked()),this,SLOT(check()));
+    connect(ui->pushButton_Check,SIGNAL(clicked()),this,SLOT(search()));
     connect(http, SIGNAL(done(bool)), this, SLOT(showPage()));
 
     QStringList labels;
@@ -58,13 +58,7 @@ void MainWindow::showPage() {
 
 }
 
-void MainWindow::foo(){
-
-    qDebug() << "clicked()";
-
-}
-
-void MainWindow::check() {
+void MainWindow::search() {
 
     QString s("/sbin/newxml.phtml?search=");
     s.append(ui->lineEdit->text());

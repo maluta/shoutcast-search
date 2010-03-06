@@ -53,7 +53,7 @@ bool XmlHandler::startElement(const QString & /* namespaceURI */,
 
         link = new QTreeWidgetItem(root);
         link->setText(0, "Playlist: http://yp.shoutcast.com/sbin/tunein-station.pls?id="+attributes.value("id"));
-
+        link->setFlags(link->flags() | Qt::ItemIsEditable);
     }
 
     return true;
