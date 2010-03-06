@@ -14,7 +14,7 @@ XmlHandler::XmlHandler(QTreeWidget *_treeWidget)
                          QIcon::Normal, QIcon::Off);
     folderIcon.addPixmap(style->standardPixmap(QStyle::SP_DirOpenIcon),
                          QIcon::Normal, QIcon::On);
-    bookmarkIcon.addPixmap(style->standardPixmap(QStyle::SP_FileIcon));
+    bookmarkIcon.addPixmap(style->standardPixmap(QStyle::SP_DriveDVDIcon));
 
     treeWidget->clear();
 }
@@ -27,32 +27,35 @@ bool XmlHandler::startElement(const QString & /* namespaceURI */,
 {
 
     if (qName == "station") {
+
+        QString data;
+
         item = new QTreeWidgetItem(treeWidget);
         item->setFlags(item->flags() | Qt::ItemIsEditable);
-        item->setIcon(0, folderIcon);
+        item->setIcon(0, bookmarkIcon);
         item->setText(0, attributes.value("name"));
-        item->setText(1, attributes.value("ct"));
-        item->setText(2, attributes.value("id"));
-        item->setText(3, attributes.value("br"));
-        item->setText(4, attributes.value("genre"));
-        item->setText(5, attributes.value("mt"));
-        item->setText(6, attributes.value("lc"));
-    }
 
-    currentText.clear();
+        root = item;
+
+        item = new QTreeWidgetItem(root);
+        item->setText(0, "Current Track: "+attributes.value("ct"));
+
+        item = new QTreeWidgetItem(root);
+        item->setText(0, "ID: "+attributes.value("id"));
+
+        item = new QTreeWidgetItem(root);
+        item->setText(0, "Genre: "+attributes.value("genre"));
+
+        item = new QTreeWidgetItem(root);
+        item->setText(0, "Bitrate: "+attributes.value("br"));
+
+        item = new QTreeWidgetItem(root);
+        item->setText(0, "Format: "+attributes.value("mt"));
+
+        item = new QTreeWidgetItem(root);
+        item->setText(0, "Listeners: "+attributes.value("lc"));
+
+    }
 
     return true;
-}
-
-QTreeWidgetItem *XmlHandler::createChildItem(const QString &tagName)
-{
-    QTreeWidgetItem *childItem;
-    if (item) {
-        childItem = new QTreeWidgetItem(item);
-    } else {
-        childItem = new QTreeWidgetItem(treeWidget);
-    }
-    childItem->setData(0, Qt::UserRole, tagName);
-
-    return childItem;
 }

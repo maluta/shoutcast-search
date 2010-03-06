@@ -22,9 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(http, SIGNAL(done(bool)), this, SLOT(showPage()));
 
     QStringList labels;
-    labels << tr("Station Name") << tr("Current Track") << tr("ID") << tr("Bitrate") << tr("Genre") << tr("Format") << tr("Listeners");
+    labels << tr("Stations");
 
-    ui->treeWidget->header()->setResizeMode(QHeaderView::Interactive);
+    ui->treeWidget->header()->setResizeMode(QHeaderView::ResizeToContents);
     ui->treeWidget->setHeaderLabels(labels);
     ui->treeWidget->clear();
 

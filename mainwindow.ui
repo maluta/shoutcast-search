@@ -32,7 +32,7 @@
     <item>
      <widget class="QTreeWidget" name="treeWidget">
       <property name="sortingEnabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>

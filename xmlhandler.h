@@ -20,15 +20,13 @@ public:
 private:
     QTreeWidget *treeWidget;
     QTreeWidgetItem *item;
+    QTreeWidgetItem *root;
     QString currentText;
     QString errorStr;
     bool metXbelTag;
 
     QIcon folderIcon;
     QIcon bookmarkIcon;
-
-    QTreeWidgetItem *createChildItem(const QString &tagName);
-
 
 };
 
