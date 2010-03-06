@@ -28,6 +28,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeWidget->setHeaderLabels(labels);
     ui->treeWidget->clear();
 
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::showPage() {
+
+    qDebug() << "MainWindow::showPage()";
+//    qDebug() << http->readAll();
+
+    QFile f("file.xml");
+    f.open(QFile::WriteOnly | QFile::Text);
+    f.write(http->readAll());
+    f.close();
+
     XmlHandler handler(ui->treeWidget);
 
     /* XML Parsing and Showing */
@@ -46,29 +64,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
-void MainWindow::showPage() {
-
-    qDebug() << "MainWindow::showPage()";
-    qDebug() << http->readAll();
-
-}
-
 void MainWindow::check() {
 
     qDebug() << "MainWindow::check()";
 
-    ui->treeWidget->clear();
+    QString s("/sbin/newxml.phtml?search=");
+    s.append(ui->lineEdit->text());
 
-//    QString s("/sbin/newxml.phtml?search=");
-//    s.append(ui->lineEdit->text());
-//
-//    QByteArray path = QUrl::toPercentEncoding(s, "/?.=");
-//    http->get(path);
+    QByteArray path = QUrl::toPercentEncoding(s, "/?.=");
+    http->get(path);
 }
 
 void MainWindow::changeEvent(QEvent *e)
