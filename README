@@ -1,0 +1,4 @@
+clone git://github.com/maluta/shoutcast-search.git
+cd shoutcast-search
+qmake && make && ./shoutcast-search
+
