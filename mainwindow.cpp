@@ -44,8 +44,6 @@ MainWindow::MainWindow(QWidget *parent) :
     if (reader.parse(xmlInputSource))
         statusBar()->showMessage(tr("File loaded"), 2000);
 
-
-
 }
 
 MainWindow::~MainWindow()
@@ -64,11 +62,13 @@ void MainWindow::check() {
 
     qDebug() << "MainWindow::check()";
 
-    QString s("/sbin/newxml.phtml?search=");
-    s.append(ui->lineEdit->text());
+    ui->treeWidget->clear();
 
-    QByteArray path = QUrl::toPercentEncoding(s, "/?.=");
-    http->get(path);
+//    QString s("/sbin/newxml.phtml?search=");
+//    s.append(ui->lineEdit->text());
+//
+//    QByteArray path = QUrl::toPercentEncoding(s, "/?.=");
+//    http->get(path);
 }
 
 void MainWindow::changeEvent(QEvent *e)

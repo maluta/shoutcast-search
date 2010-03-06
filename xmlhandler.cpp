@@ -16,6 +16,7 @@ XmlHandler::XmlHandler(QTreeWidget *_treeWidget)
                          QIcon::Normal, QIcon::On);
     bookmarkIcon.addPixmap(style->standardPixmap(QStyle::SP_FileIcon));
 
+    treeWidget->clear();
 }
 
 
@@ -36,7 +37,6 @@ bool XmlHandler::startElement(const QString & /* namespaceURI */,
         item->setText(4, attributes.value("genre"));
         item->setText(5, attributes.value("mt"));
         item->setText(6, attributes.value("lc"));
-
     }
 
     currentText.clear();
@@ -53,8 +53,6 @@ QTreeWidgetItem *XmlHandler::createChildItem(const QString &tagName)
         childItem = new QTreeWidgetItem(treeWidget);
     }
     childItem->setData(0, Qt::UserRole, tagName);
-
-
 
     return childItem;
 }
