@@ -10,11 +10,7 @@ XmlHandler::XmlHandler(QTreeWidget *_treeWidget)
     treeWidget = _treeWidget;
     QStyle *style = treeWidget->style();
 
-    folderIcon.addPixmap(style->standardPixmap(QStyle::SP_DirClosedIcon),
-                         QIcon::Normal, QIcon::Off);
-    folderIcon.addPixmap(style->standardPixmap(QStyle::SP_DirOpenIcon),
-                         QIcon::Normal, QIcon::On);
-    bookmarkIcon.addPixmap(style->standardPixmap(QStyle::SP_DriveDVDIcon));
+    cdicon.addPixmap(style->standardPixmap(QStyle::SP_DriveDVDIcon));
 
     treeWidget->clear();
 }
@@ -32,7 +28,7 @@ bool XmlHandler::startElement(const QString & /* namespaceURI */,
 
         item = new QTreeWidgetItem(treeWidget);
         item->setFlags(item->flags() | Qt::ItemIsEditable);
-        item->setIcon(0, bookmarkIcon);
+        item->setIcon(0, cdicon);
         item->setText(0, attributes.value("name"));
 
         root = item;
@@ -55,7 +51,11 @@ bool XmlHandler::startElement(const QString & /* namespaceURI */,
         item = new QTreeWidgetItem(root);
         item->setText(0, "Listeners: "+attributes.value("lc"));
 
+        link = new QTreeWidgetItem(root);
+        link->setText(0, "Playlist: http://yp.shoutcast.com/sbin/tunein-station.pls?id="+attributes.value("id"));
+
     }
 
     return true;
 }
+

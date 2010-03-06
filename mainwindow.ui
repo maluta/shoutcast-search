@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ShoutCast Search</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -23,7 +23,7 @@
       <item>
        <widget class="QPushButton" name="pushButton_Check">
         <property name="text">
-         <string>Check</string>
+         <string>&amp;Search</string>
         </property>
        </widget>
       </item>
@@ -34,6 +34,11 @@
       <property name="sortingEnabled">
        <bool>false</bool>
       </property>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
      </widget>
     </item>
    </layout>

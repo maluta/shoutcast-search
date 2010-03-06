@@ -27,8 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeWidget->header()->setResizeMode(QHeaderView::ResizeToContents);
     ui->treeWidget->setHeaderLabels(labels);
     ui->treeWidget->clear();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -38,9 +36,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::showPage() {
 
-    qDebug() << "MainWindow::showPage()";
-//    qDebug() << http->readAll();
-
     QFile f("file.xml");
     f.open(QFile::WriteOnly | QFile::Text);
     f.write(http->readAll());
@@ -49,7 +44,6 @@ void MainWindow::showPage() {
     XmlHandler handler(ui->treeWidget);
 
     /* XML Parsing and Showing */
-
     QXmlSimpleReader reader;
     reader.setContentHandler(&handler);
     reader.setErrorHandler(&handler);
@@ -60,13 +54,17 @@ void MainWindow::showPage() {
     QXmlInputSource xmlInputSource(&file);
 
     if (reader.parse(xmlInputSource))
-        statusBar()->showMessage(tr("File loaded"), 2000);
+        statusBar()->showMessage(tr("Search Finished"), 3000);
+
+}
+
+void MainWindow::foo(){
+
+    qDebug() << "clicked()";
 
 }
 
 void MainWindow::check() {
-
-    qDebug() << "MainWindow::check()";
 
     QString s("/sbin/newxml.phtml?search=");
     s.append(ui->lineEdit->text());
@@ -77,7 +75,6 @@ void MainWindow::check() {
 
 void MainWindow::changeEvent(QEvent *e)
 {
-
     QMainWindow::changeEvent(e);
     switch (e->type()) {
     case QEvent::LanguageChange:

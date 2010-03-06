@@ -21,6 +21,7 @@ protected:
 private slots:
     void check();
     void showPage();
+    void foo();
 
 private:
     Ui::MainWindow *ui;
